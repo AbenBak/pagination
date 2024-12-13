@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1> {{title}}</h1>
+    <div>
+        {% for book in page.object_list %}
+        {{book.name.verbose_name}}:{{book.name}} &vert;
+        {{book.year.verbose_name}}:{{book.year}} &vert;
+        {{book.genre.verbose_name}}:{{book.genre}} &vert;
+        {{book.author_id.verbose_name}}:{{book.author_id}} &vert;
+        <br> 
+        {%endfor%}
+    </div>
+    <div>
+        {%if page.has_previous%}
+        <a href="?page={{page.previous_page_number}}">&lt;</a>
+        {%else%}
+          &nbsp; &lt;&nbsp;
+        {%endif%}
+        {%if page.has_next%}
+        Страница {{page.page_number}}
+        <a href="?page={{page.next_page_number}}">&gt;</a>
+        {%else%}
+          &nbsp; &gt;&nbsp;
+        {%endif%}
+
+    </div>
+</body>
+</html>
